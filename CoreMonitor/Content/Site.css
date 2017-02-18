@@ -1,6 +1,10 @@
 ﻿body {
-    padding-top: 50px;
-    padding-bottom: 20px;
+  font-family: "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #BDBDBD;
+  background-color: #060606;
+  margin: 0;
 }
 
 /* Set padding to keep content from hitting the edges */

@@ -22,6 +22,7 @@ namespace CoreMonitor
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
+                      "~/Content/component.css",
                       "~/Content/site.css"));
         }
     }
