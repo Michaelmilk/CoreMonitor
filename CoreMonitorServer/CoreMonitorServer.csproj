@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{C29F47DA-3872-4801-9B3A-A49E9C50804B}</ProjectGuid>
+    <ProjectGuid>{D4979759-4600-4890-BDEA-202593A74A33}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>CoreMonitorWorkFlow</RootNamespace>
-    <AssemblyName>CoreMonitorWorkFlow</AssemblyName>
+    <RootNamespace>CoreMonitorServer</RootNamespace>
+    <AssemblyName>CoreMonitorServer</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>

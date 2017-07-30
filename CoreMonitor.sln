@@ -9,7 +9,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorData", "CoreMoni
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorService", "CoreMonitorService\CoreMonitorService.csproj", "{A0FC0C45-94F2-4817-BBDD-36A4EB38C78C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorWorkFlow", "CoreMonitorWorkFlow\CoreMonitorWorkFlow.csproj", "{C29F47DA-3872-4801-9B3A-A49E9C50804B}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorServer", "CoreMonitorServer\CoreMonitorServer.csproj", "{D4979759-4600-4890-BDEA-202593A74A33}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -29,10 +29,10 @@ Global
 		{A0FC0C45-94F2-4817-BBDD-36A4EB38C78C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{A0FC0C45-94F2-4817-BBDD-36A4EB38C78C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A0FC0C45-94F2-4817-BBDD-36A4EB38C78C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C29F47DA-3872-4801-9B3A-A49E9C50804B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C29F47DA-3872-4801-9B3A-A49E9C50804B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C29F47DA-3872-4801-9B3A-A49E9C50804B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C29F47DA-3872-4801-9B3A-A49E9C50804B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D4979759-4600-4890-BDEA-202593A74A33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D4979759-4600-4890-BDEA-202593A74A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D4979759-4600-4890-BDEA-202593A74A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D4979759-4600-4890-BDEA-202593A74A33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
