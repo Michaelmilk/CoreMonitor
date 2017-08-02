@@ -1,4 +1,7 @@
-﻿using Hangfire;
+﻿using Autofac;
+using Hangfire;
+using Hangfire.Logging;
+using Hangfire.Logging.LogProviders;
 using Owin;
 using System;
 using System.Collections.Generic;
@@ -44,12 +47,17 @@ namespace CoreMonitorServer
 
 
             //hangfire
+            var containerBuilder = new ContainerBuilder();
+            GlobalConfiguration.Configuration.UseAutofacActivator(containerBuilder.Build());
+
             string connectionString = "Data Source = .; Initial Catalog = EntityStore; Integrated Security=true; User ID = michael; Password = michael";
 
-            GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString);
+            GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString).UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
 
             appBuilder.UseHangfireDashboard();
             appBuilder.UseHangfireServer();
+
+            LogProvider.SetCurrentLogProvider(new ColouredConsoleLogProvider());
         }
     }
 }
