@@ -5,11 +5,13 @@ VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitor", "CoreMonitor\CoreMonitor.csproj", "{3199189B-B9A9-4E54-A286-CF93DE47045B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorData", "CoreMonitorData\CoreMonitorData.csproj", "{0CA3DEF4-64B2-4C3E-850B-D9B918843A94}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorCore", "CoreMonitorData\CoreMonitorCore.csproj", "{0CA3DEF4-64B2-4C3E-850B-D9B918843A94}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorService", "CoreMonitorService\CoreMonitorService.csproj", "{A0FC0C45-94F2-4817-BBDD-36A4EB38C78C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorServer", "CoreMonitorServer\CoreMonitorServer.csproj", "{D4979759-4600-4890-BDEA-202593A74A33}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreMonitorProcessor", "CoreMonitorProcessor\CoreMonitorProcessor.csproj", "{3025EB4C-6181-48B6-B883-6935F1F95579}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -33,6 +35,10 @@ Global
 		{D4979759-4600-4890-BDEA-202593A74A33}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4979759-4600-4890-BDEA-202593A74A33}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4979759-4600-4890-BDEA-202593A74A33}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3025EB4C-6181-48B6-B883-6935F1F95579}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3025EB4C-6181-48B6-B883-6935F1F95579}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3025EB4C-6181-48B6-B883-6935F1F95579}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3025EB4C-6181-48B6-B883-6935F1F95579}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

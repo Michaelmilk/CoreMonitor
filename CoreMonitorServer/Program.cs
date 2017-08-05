@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin.Hosting;
+﻿using Hangfire;
+using Microsoft.Owin.Hosting;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace CoreMonitorServer
     {
         static void Main(string[] args)
         {
-            string baseAddress = "http://localhost:9000/";
+            string baseAddress = "http://localhost:9001/";
 
             // Start OWIN host 
             using (WebApp.Start<Startup>(url: baseAddress))
@@ -22,8 +23,16 @@ namespace CoreMonitorServer
 
                 var response = client.GetAsync(baseAddress + "api/Test").Result;
 
+
                 Console.WriteLine(response);
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
+                RecurringJob.AddOrUpdate(
+                () => Console.WriteLine("{0} Recurring job completed successfully!", DateTime.Now.ToString()),
+                Cron.Minutely);
+
+                BackgroundJob.Enqueue(() => Console.WriteLine($"{DateTime.Now.ToString()} once job executed successfully!"));
+
                 Console.ReadLine();
             }
         }

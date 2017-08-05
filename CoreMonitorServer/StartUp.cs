@@ -2,10 +2,12 @@
 using Hangfire;
 using Hangfire.Logging;
 using Hangfire.Logging.LogProviders;
+using Hangfire.SqlServer;
 using Owin;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Messaging;
 using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -51,8 +53,28 @@ namespace CoreMonitorServer
             GlobalConfiguration.Configuration.UseAutofacActivator(containerBuilder.Build());
 
             string connectionString = "Data Source = .; Initial Catalog = EntityStore; Integrated Security=true; User ID = michael; Password = michael";
+            //var path = @".\hangfir_queue";
+            //MessageQueue m_Msq;
+            //if (MessageQueue.Exists(path))
+            //    m_Msq = new MessageQueue(path);
+            //else
+            //{
+            //    m_Msq = MessageQueue.Create(path);
+            //    m_Msq.MaximumQueueSize = 10000;
+            //}
+            //m_Msq.SetPermissions("Everyone", System.Messaging.MessageQueueAccessRights.FullControl);
 
-            GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString).UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
+
+            //var oldStorage = new SqlServerStorage(connectionString);
+            //var oldOptions = new BackgroundJobServerOptions
+            //{
+            //    ServerName = "OldQueueServer" // Pass this to differentiate this server from the next one
+            //};
+
+            //appBuilder.UseHangfireServer(oldOptions, oldStorage);
+            //GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString).UseMsmqQueues(@".\hangfire-{0}", "critical", "default");
+            //https://discuss.hangfire.io/t/help-with-configuring-msmq/615/2
+            GlobalConfiguration.Configuration.UseSqlServerStorage(connectionString).UseMsmqQueues(@".\Private$\hangfire-{0}", "testqueue");
 
             appBuilder.UseHangfireDashboard();
             appBuilder.UseHangfireServer();
