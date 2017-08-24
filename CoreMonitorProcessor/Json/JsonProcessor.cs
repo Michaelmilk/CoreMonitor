@@ -9,14 +9,97 @@ namespace CoreMonitorProcessor.Json
 {
     public static class JsonProcessor
     {
-        public static List<string> FlattenAllJsonPaths(string json, string jsonPath, bool withArryIndex)
+        public static List<string> FlattenAllJsonPaths(string json, bool withArryIndex)
         {
-
+            List<string> jsonPaths = new List<string>();
+            JToken token = JToken.Parse(json);
+            GenerateJsonPaths(jsonPaths, token, "", withArryIndex);
+            return jsonPaths;
         }
 
-        public static List<KeyValuePair<string, string>> FlattenJsonByPath(string json, string jsonPath, bool withArryIndex)
+        private static void GenerateJsonPaths(List<string> jsonPaths, JToken token,
+            string prefix, bool withArrayIndex)
         {
+            switch (token.Type)
+            {
+                case JTokenType.Object:
+                    foreach (JProperty prop in token.Children<JProperty>())
+                    {
+                        jsonPaths.Add(Join(prefix, prop.Name));
+                        GenerateJsonPaths(jsonPaths, prop.Value, Join(prefix, prop.Name), withArrayIndex);
+                    }
 
+                    break;
+                case JTokenType.Array:
+                    int index = 0;
+                    foreach (JToken value in token.Children())
+                    {
+                        jsonPaths.Add(prefix);
+                        if (withArrayIndex)
+                        {
+                            GenerateJsonPaths(jsonPaths, value, Join(prefix, index.ToString()), withArrayIndex);
+                        }
+                        else
+                        {
+                            GenerateJsonPaths(jsonPaths, value, prefix, withArrayIndex);
+                        }
+
+                        index++;
+                    }
+
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        public static KeyValuePair<string, object> FlattenJsonByPath(string json, string jsonPath)
+        {
+            JObject jObject = JObject.Parse(json);
+            List<string> jsonPathSegments = jsonPath.Split('.').ToList();
+            if (jsonPathSegments.Count == 0)
+            {
+                return new KeyValuePair<string, object>();
+            }
+
+            string currentJsonPath = string.Empty;
+            bool isContainArray = false;
+            foreach (var pathSeg in jsonPathSegments)
+            {
+                currentJsonPath += pathSeg;
+                JToken token;
+                if (isContainArray)
+                {
+                    token = jObject.SelectTokens(currentJsonPath).First();
+                }
+                else
+                {
+                    token = jObject.SelectToken(currentJsonPath);
+                }
+
+                if (token.Type == JTokenType.Array)
+                {
+                    currentJsonPath += "[*]";
+                    isContainArray = true;
+                }
+
+                currentJsonPath += ".";
+
+            }
+
+            currentJsonPath = currentJsonPath.Remove(currentJsonPath.Length - 1);
+
+            if (isContainArray)
+            {
+                var values = jObject.SelectTokens(currentJsonPath).Select(t => t.ToString()).ToList();
+
+                return new KeyValuePair<string, object>(jsonPath, values);
+            }
+            else
+            {
+                var value = jObject.SelectToken(currentJsonPath);
+                return new KeyValuePair<string, object>(jsonPath, value.ToString());
+            }
         }
 
         public static List<KeyValuePair<string, string>> Flatten(string json, bool withArryIndex)

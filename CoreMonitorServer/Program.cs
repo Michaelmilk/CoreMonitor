@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 
 namespace CoreMonitorServer
 {
@@ -32,9 +33,18 @@ namespace CoreMonitorServer
                 Cron.Minutely);
 
                 BackgroundJob.Enqueue(() => Console.WriteLine($"{DateTime.Now.ToString()} once job executed successfully!"));
+                BackgroundJob.Enqueue(() => test());
+
+                Console.WriteLine("jixge__________________________________");
 
                 Console.ReadLine();
             }
+        }
+
+        public static void test()
+        {
+            Thread.Sleep(10000);
+            Console.WriteLine("job execution");
         }
     }
 }
