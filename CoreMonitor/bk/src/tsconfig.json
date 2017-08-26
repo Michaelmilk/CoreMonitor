@@ -1,5 +1,7 @@
 {
   "compilerOptions": {
+    //"types": [ "jasmine" ],
+    "noStrictGenericChecks": true,
     "target": "es5",
     "module": "commonjs",
     "moduleResolution": "node",
@@ -8,14 +10,6 @@
     "experimentalDecorators": true,
     "lib": [ "es2015", "dom" ],
     "noImplicitAny": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "typeRoots": [
-      "../node_modules/@types/"
-    ]
-  },
-  "compileOnSave": true,
-  "exclude": [
-    "node_modules/*",
-    "**/*-aot.ts"
-  ]
+    "suppressImplicitAnyIndexErrors": true
+  }
 }
