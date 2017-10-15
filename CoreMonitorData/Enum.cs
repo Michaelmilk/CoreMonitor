@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace CoreMonitorCore
 {
-    public class Class1
+    public enum AnalysisType
     {
+        EntitySpace = 1,
+        EntityView,
+        EntityGraph
     }
 }

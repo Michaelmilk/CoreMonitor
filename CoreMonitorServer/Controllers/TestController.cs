@@ -16,9 +16,9 @@ namespace CoreMonitorServer.Controllers
         }
 
         // GET api/test/5 
-        public string Get(int id)
+        public IHttpActionResult Get(int id)
         {
-            return "value";
+            return Ok(new { Property = "value" });
         }
 
         // POST api/test 

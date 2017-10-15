@@ -12,6 +12,28 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Web.Http;
 
+using Newtonsoft.Json.Serialization;
+using System.Net.Http.Formatting;
+using System.Net.Http;
+using System.Net.Http.Headers;
+
+internal class JsonContentNegotiator : IContentNegotiator
+{
+    private readonly JsonMediaTypeFormatter _jsonFormatter;
+
+    public JsonContentNegotiator(JsonMediaTypeFormatter formatter)
+    {
+        _jsonFormatter = formatter;
+        _jsonFormatter.SerializerSettings.ContractResolver =
+            new CamelCasePropertyNamesContractResolver();
+    }
+
+    public ContentNegotiationResult Negotiate(Type type, HttpRequestMessage request, IEnumerable<MediaTypeFormatter> formatters)
+    {
+        return new ContentNegotiationResult(_jsonFormatter, new MediaTypeHeaderValue("application/json"));
+    }
+}
+
 namespace CoreMonitorServer
 {
     public class Startup
@@ -22,6 +44,9 @@ namespace CoreMonitorServer
         {
             // Configure Web API for self-host. 
             HttpConfiguration config = new HttpConfiguration();
+
+            config.EnableCors();
+
             // Web API routes
             //config.MapHttpAttributeRoutes();
             config.Routes.MapHttpRoute(
@@ -29,6 +54,11 @@ namespace CoreMonitorServer
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+
+            //Return json with lower case first letter of property names
+            var jsonFormatter = new JsonMediaTypeFormatter();
+            config.Services.Replace(typeof(IContentNegotiator), new JsonContentNegotiator(jsonFormatter));
+
 
             appBuilder.UseWebApi(config);
 
@@ -79,7 +109,7 @@ namespace CoreMonitorServer
             appBuilder.UseHangfireDashboard();
             appBuilder.UseHangfireServer();
 
-            LogProvider.SetCurrentLogProvider(new ColouredConsoleLogProvider());
+            //LogProvider.SetCurrentLogProvider(new ColouredConsoleLogProvider());
         }
     }
 }

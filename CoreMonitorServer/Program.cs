@@ -23,10 +23,14 @@ namespace CoreMonitorServer
                 HttpClient client = new HttpClient();
 
                 var response = client.GetAsync(baseAddress + "api/Test").Result;
+                var response2 = client.GetAsync(baseAddress + "api/Test/5").Result;
 
 
                 Console.WriteLine(response);
                 Console.WriteLine(response.Content.ReadAsStringAsync().Result);
+
+                Console.WriteLine(response2);
+                Console.WriteLine(response2.Content.ReadAsStringAsync().Result);
 
                 RecurringJob.AddOrUpdate(
                 () => Console.WriteLine("{0} Recurring job completed successfully!", DateTime.Now.ToString()),
