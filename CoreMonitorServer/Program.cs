@@ -32,9 +32,9 @@ namespace CoreMonitorServer
                 Console.WriteLine(response2);
                 Console.WriteLine(response2.Content.ReadAsStringAsync().Result);
 
-                RecurringJob.AddOrUpdate(
-                () => Console.WriteLine("{0} Recurring job completed successfully!", DateTime.Now.ToString()),
-                Cron.Minutely);
+                //RecurringJob.AddOrUpdate(
+                //() => Console.WriteLine("{0} Recurring job completed successfully!", DateTime.Now.ToString()),
+                //Cron.Minutely);
 
                 BackgroundJob.Enqueue(() => Console.WriteLine($"{DateTime.Now.ToString()} once job executed successfully!"));
                 BackgroundJob.Enqueue(() => test());
