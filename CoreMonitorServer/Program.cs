@@ -35,7 +35,7 @@ namespace CoreMonitorServer
                 BackgroundJob.Enqueue(() => Console.WriteLine($"{DateTime.Now.ToString()} once job executed successfully!"));
                 BackgroundJob.Enqueue(() => test());
 
-                Console.WriteLine("jixge__________________________________");
+                Console.WriteLine("kk__________________________________");
 
                 Console.ReadLine();
             }
